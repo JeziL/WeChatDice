@@ -4,8 +4,8 @@
 
 @property (nonatomic, assign, readonly) BOOL diceEnabled;
 @property (nonatomic, assign, readonly) BOOL jsbEnabled;
-@property (nonatomic, assign, readonly) NSInteger dicePoint;
-@property (nonatomic, assign, readonly) NSInteger jsbType;
+@property (nonatomic, assign, readonly) unsigned int dicePoint;
+@property (nonatomic, assign, readonly) unsigned int jsbType;
 
 + (instancetype)sharedUserDefaults;
 
