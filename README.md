@@ -16,4 +16,8 @@ Generate the point you want using WeChat's dice emoticon.
 
 在 Cydia™ 中添加源 [repo.wangjinli.com](http://repo.wangjinli.com) 搜索安装。
 
+## 其他
+
+- 博客：[越狱开发系列（二）：让微信的骰子永远摇出六点](http://wangjinli.com/blog/2016/08/jailbreak-development-2-wechat-dice/)
+
 
