@@ -42,15 +42,16 @@ static void preferencesChanged() {
 }
 
 - (void)_preferencesChanged {
-	CFStringRef appId = CFSTR("com.wangjinli.wechatdicepb");
-	CFArrayRef keyList = CFPreferencesCopyKeyList(appId, kCFPreferencesCurrentUser, kCFPreferencesAnyHost);
-	if (!keyList) {
-		NSLog(@"WCD: Read keyList Error.");
-		[self attemptSettingFallbackPrefs];
-		return;
-	}
-	NSDictionary *preferences = (NSDictionary *)CFBridgingRelease(CFPreferencesCopyMultiple(keyList, appId, kCFPreferencesCurrentUser, kCFPreferencesAnyHost));
-	CFRelease(keyList);
+	// CFStringRef appId = CFSTR("com.wangjinli.wechatdicepb");
+	// CFArrayRef keyList = CFPreferencesCopyKeyList(appId, kCFPreferencesCurrentUser, kCFPreferencesAnyHost);
+	// if (!keyList) {
+	// 	NSLog(@"WCD: Read keyList Error.");
+	// 	[self attemptSettingFallbackPrefs];
+	// 	return;
+	// }
+	// NSDictionary *preferences = (NSDictionary *)CFBridgingRelease(CFPreferencesCopyMultiple(keyList, appId, kCFPreferencesCurrentUser, kCFPreferencesAnyHost));
+	// CFRelease(keyList);
+	NSDictionary *preferences = [[NSDictionary alloc] initWithContentsOfFile:@"/var/mobile/Library/Preferences/com.wangjinli.wechatdicepb.plist"];
 	if (!preferences) {
 		NSLog(@"WCD: Read preferences Error.");
 		[self attemptSettingFallbackPrefs];
