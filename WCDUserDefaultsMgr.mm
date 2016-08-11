@@ -20,10 +20,11 @@ static void preferencesChanged() {
 + (instancetype)sharedUserDefaults {
 	NSLog(@"WCD: sharedUserDefaults.");
 	static id sharedInstance = nil;
-	static dispatch_once_t token = 0;
-	dispatch_once(&token, ^{
-		sharedInstance = [self new];
-	});
+	// static dispatch_once_t token = 0;
+	// dispatch_once(&token, ^{
+	// 	sharedInstance = [self new];
+	// });
+	sharedInstance = [self new];
 	return sharedInstance;
 }
 
