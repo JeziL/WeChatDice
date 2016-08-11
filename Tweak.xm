@@ -33,6 +33,8 @@ CMessageWrap *setJsb(CMessageWrap *wrap, unsigned int type) {
 
 // %end
 
+WCDUserDefaultsMgr *prefs = nil;
+
 %hook GameController
 
 // - (void)sendGameMessage:(id)arg1 toUsr:(id)arg2 {
@@ -46,18 +48,19 @@ CMessageWrap *setJsb(CMessageWrap *wrap, unsigned int type) {
 // }
 
 + (id)getMD5ByGameContent:(unsigned int)arg1 {
-	NSLog(@"--------WCD-3: getMD5ByGameContent.----------");
+	NSLog(@"--------WCD-1: getMD5ByGameContent.----------");
+	prefs = [WCDUserDefaultsMgr sharedUserDefaults];
 	if (arg1 > 3 && arg1 < 10) {
 		NSLog(@"Is a dice.");
-		if ([WCDUserDefaultsMgr sharedUserDefaults].diceEnabled) {
-			return %orig([WCDUserDefaultsMgr sharedUserDefaults].dicePoint + 3);
+		if (prefs.diceEnabled) {
+			return %orig(prefs.dicePoint + 3);
 		} else {
 			return %orig;
 		}
 	} else if (arg1 > 0 && arg1 < 4) {
 		NSLog(@"Is a JSB.");
-		if ([WCDUserDefaultsMgr sharedUserDefaults].jsbEnabled) {
-			return %orig([WCDUserDefaultsMgr sharedUserDefaults].jsbType);
+		if (prefs.jsbEnabled) {
+			return %orig(prefs.jsbType);
 		} else {
 			return %orig;
 		}
@@ -72,18 +75,19 @@ CMessageWrap *setJsb(CMessageWrap *wrap, unsigned int type) {
 
 - (void)AddEmoticonMsg:(id)arg1 MsgWrap:(id)arg2 {
 	CMessageWrap *wrap = (CMessageWrap *)arg2;
-	NSLog(@"--------WCD-4: AddEmoticonMsg.----------");
+	NSLog(@"--------WCD-2: AddEmoticonMsg.----------");
 	NSLog(@"m_uiGameType: %i", wrap.m_uiGameType);
 	NSLog(@"m_uiGameContent: %i", wrap.m_uiGameContent);
+	if (prefs == nil) { prefs = [WCDUserDefaultsMgr sharedUserDefaults]; }
 	if (wrap.m_uiGameType == 2) {
-		if ([WCDUserDefaultsMgr sharedUserDefaults].diceEnabled) {
-			%orig(arg1, setDice(arg2, [WCDUserDefaultsMgr sharedUserDefaults].dicePoint));
+		if (prefs.diceEnabled) {
+			%orig(arg1, setDice(arg2, prefs.dicePoint));
 		} else {
 			%orig;
 		}
 	} else if (wrap.m_uiGameType == 1) {
-		if ([WCDUserDefaultsMgr sharedUserDefaults].jsbEnabled) {
-			%orig(arg1, setJsb(arg2, [WCDUserDefaultsMgr sharedUserDefaults].jsbType));
+		if (prefs.jsbEnabled) {
+			%orig(arg1, setJsb(arg2, prefs.jsbType));
 		} else {
 			%orig;
 		}
@@ -98,18 +102,19 @@ CMessageWrap *setJsb(CMessageWrap *wrap, unsigned int type) {
 
 - (void)StartUpload:(id)arg1 {
 	CMessageWrap *wrap = (CMessageWrap *)arg1;
-	NSLog(@"--------WCD-5: StartUpload.----------");
+	NSLog(@"--------WCD-3: StartUpload.----------");
 	NSLog(@"m_uiGameType: %i", wrap.m_uiGameType);
 	NSLog(@"m_uiGameContent: %i", wrap.m_uiGameContent);
+	if (prefs == nil) { prefs = [WCDUserDefaultsMgr sharedUserDefaults]; }
 	if (wrap.m_uiGameType == 2) {
-		if ([WCDUserDefaultsMgr sharedUserDefaults].diceEnabled) {
-			%orig(setDice(arg1, [WCDUserDefaultsMgr sharedUserDefaults].dicePoint));
+		if (prefs.diceEnabled) {
+			%orig(setDice(arg1, prefs.dicePoint));
 		} else {
 			%orig;
 		}
 	} else if (wrap.m_uiGameType == 1) {
-		if ([WCDUserDefaultsMgr sharedUserDefaults].jsbEnabled) {
-			%orig(setJsb(arg1, [WCDUserDefaultsMgr sharedUserDefaults].jsbType));
+		if (prefs.jsbEnabled) {
+			%orig(setJsb(arg1, prefs.jsbType));
 		} else {
 			%orig;
 		}
