@@ -112,7 +112,25 @@
 			<key>cell</key>
 			<string>PSGroupCell</string>
 			<key>footerText</key>
+			<string>所有设置即时生效，不需要重启微信。</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
+			<key>footerText</key>
 			<string>© 2016  Li</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSButtonCell</string>
+			<key>label</key>
+			<string>View Source on GitHub®</string>
+			<key>hasIcon</key>
+			<true/>
+			<key>icon</key>
+			<string>GitHub.png</string>
+			<key>action</key>
+			<string>openGitHubRepo</string>
 		</dict>
 	</array>
 	<key>title</key>
