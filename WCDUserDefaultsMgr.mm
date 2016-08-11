@@ -20,10 +20,6 @@ static void preferencesChanged() {
 + (instancetype)sharedUserDefaults {
 	NSLog(@"WCD: sharedUserDefaults.");
 	static id sharedInstance = nil;
-	// static dispatch_once_t token = 0;
-	// dispatch_once(&token, ^{
-	// 	sharedInstance = [self new];
-	// });
 	sharedInstance = [self new];
 	return sharedInstance;
 }
@@ -43,15 +39,6 @@ static void preferencesChanged() {
 }
 
 - (void)_preferencesChanged {
-	// CFStringRef appId = CFSTR("com.wangjinli.wechatdicepb");
-	// CFArrayRef keyList = CFPreferencesCopyKeyList(appId, kCFPreferencesCurrentUser, kCFPreferencesAnyHost);
-	// if (!keyList) {
-	// 	NSLog(@"WCD: Read keyList Error.");
-	// 	[self attemptSettingFallbackPrefs];
-	// 	return;
-	// }
-	// NSDictionary *preferences = (NSDictionary *)CFBridgingRelease(CFPreferencesCopyMultiple(keyList, appId, kCFPreferencesCurrentUser, kCFPreferencesAnyHost));
-	// CFRelease(keyList);
 	NSDictionary *preferences = [[NSDictionary alloc] initWithContentsOfFile:@"/var/mobile/Library/Preferences/com.wangjinli.wechatdicepb.plist"];
 	if (!preferences) {
 		NSLog(@"WCD: Read preferences Error.");
