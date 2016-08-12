@@ -1,7 +1,7 @@
 Package: com.wangjinli.wechatdice
 Name: WeChatDice
 Depends: mobilesubstrate
-Version: 1.0.0
+Version: 1.0.1
 Architecture: iphoneos-arm
 Description: Generate the point you want using WeChat's dice emoticon.
 Maintainer: Li
